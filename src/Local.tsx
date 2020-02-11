@@ -1,9 +1,12 @@
 import React from "react";
 import { observer, useLocalStore } from "mobx-react-lite";
 
-export default observer(function(props) {
+interface ILocal {
+  name: string;
+}
+
+const Local = (props: ILocal) => {
   const newName = useLocalStore(source => {
-    console.log("local", source); // NOT PICKING UP THE UPDATED PROP VALUE!
     return {
       name: source.name
     };
@@ -12,10 +15,11 @@ export default observer(function(props) {
   return (
     <>
       <h2>Local Store</h2>
-      <p>{newName.name || props.name}</p>
+      <p>{newName.name}</p>
       <button onClick={() => (newName.name = "Alien Cyborj")}>
         I want to be Alien Cyborj
       </button>
     </>
   );
-});
+};
+export default observer(Local);

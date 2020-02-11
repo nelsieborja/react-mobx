@@ -11,16 +11,16 @@ export default function() {
   useEffect(() => {
     userStore.name = "Nelsie Borja";
     userStore.job = "Frontend Engineer";
-  }, []);
+  }, [userStore]);
 
   return useObserver(() => (
-    <div>
+    <>
       <div>
         <h2>User Store</h2>
         <p>[name]: {userStore.name}</p>
         <p>[job]: {userStore.job}</p>
       </div>
-      <Local name={userStore.name} />
-    </div>
+      {userStore.name && <Local name={userStore.name} />}
+    </>
   ));
 }
